@@ -79,7 +79,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             let price = arr[indexSelected].price
             
             secondVC.companyNameTxt = "Company name is \(name)"
-            secondVC.compangSymbolTxt = "Company symbol is \(symbol)"
+            secondVC.compangSymbolTxt = symbol
             secondVC.companyPriceTxt = "Company price is \(price)"
             
             

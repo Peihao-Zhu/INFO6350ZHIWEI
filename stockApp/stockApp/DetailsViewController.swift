@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import SwiftSpinner
 
 class DetailsViewController: UIViewController {
     
@@ -21,10 +24,28 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         companyName.text = companyNameTxt
-        companySymbol.text = compangSymbolTxt
+        companySymbol.text = "Company symbol is \(compangSymbolTxt)"
         companyPrice.text = companyPriceTxt
+        getStockBySymbol()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func getStockBySymbol() {
+        var url = "https://us-central1-whatsapp-analytics-2de0e.cloudfunctions.net/app/getstock?symbol="
+        url+=compangSymbolTxt
+        SwiftSpinner.show("Getting stock by symbol")
+        AF.request(url).responseJSON { responseData in
+                  
+                  SwiftSpinner.hide()
+                  
+                  if responseData.error != nil {
+                      print(responseData.error!)
+                      return
+                  }
+                 print(responseData)
+
+              }
     }
     
 
